@@ -44,7 +44,7 @@ const Page = () => {
                                 <Slide>
                                     {adInfo.images.map((img, k) =>
                                         <div key={k} className="each-slide">
-                                            <img src={img} alt=""/>
+                                            <img src={img} alt="" />
                                         </div>
                                     )}
                                 </Slide>
@@ -77,13 +77,21 @@ const Page = () => {
                         {adInfo.priceNegotiable &&
                             "Preço negociável"
                         }
-                        {adInfo.priceNegotiable && adInfo.price && 
+                        {adInfo.priceNegotiable && adInfo.price &&
                             <div className='price'>Preço <span>R$ {adInfo.price}</span></div>
                         }
                     </div>
-                    <div className="box box-padding">
-                        {loading && <Fake height={50} />}
-                    </div>
+                    {loading && <Fake height={50} />}
+                    {adInfo.userInfo &&
+                        <>
+                            <a href={`mailto:${adInfo.userInfo.email}`} target="_blank" className="contactSellerLink">Fale com o vendedor</a>
+                            <div className="createdBy box box-padding">                                
+                                <strong>{adInfo.userInfo.name}</strong>
+                                <small>Email: {adInfo.userInfo.email}</small>
+                                <small>Estado: {adInfo.userInfo.stateName}</small>
+                            </div>
+                        </>
+                    }
                 </div>
             </PageArea>
         </PageContainer>
